@@ -1,0 +1,255 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-image: url(../images/bg.jpg);
+  background-color: #339933;
+  background-size: calc(100vh * 16 / 9) 100vh;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center top;
+}
+@media (min-aspect-ratio: 24/32) { body { font-size: calc(100vh / 32); } }
+@media (max-aspect-ratio: 24/32) { body { font-size: calc(100vw / 24); } }
+
+div#container {
+  display: flex;
+  padding: 0em;
+  margin: 0em auto;
+}
+div#board-box {
+  position: relative;
+  width: 24em;
+  height: 32em;
+  -webkit-flex-shrink: 0;
+  flex-shrink:         0;
+}
+div#record-box {
+  -webkit-flex-shrink: 0;
+  flex-shrink:         0;
+  border: 1px solid #000000;
+  padding: 0em;
+  ol {
+    padding: 0em 0em 0em 2em;
+    overflow-y: auto;
+  }
+  p {
+    padding: 0.5em;
+  }
+  p#dead-msg {
+    display: none;
+  }
+}
+@media (min-aspect-ratio: 1/1) {
+  div#container {
+    -webkit-justify-content: center;
+    justify-content:         center;
+  }
+  div#record-box {
+    margin: 1em 0em;
+    width: 8em;
+  }
+}
+@media (max-aspect-ratio: 1/1) {
+  div#container {
+    -webkit-flex-direction: column;
+    flex-direction:         column;
+    -webkit-align-items: center;
+    align-items:         center;
+  }
+  div#record-box {
+    margin: 1em;
+    width: 20em;
+  }
+}
+
+div#about-overlay {
+  z-index: 1;
+  display: none;
+  position: fixed;
+  top: 0em;
+  left: 0em;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+div#about-dialog {
+  position: fixed;
+  width: 20em;
+  height: 14em;
+  left: calc(50vw - 10em);
+  top: calc(50vh - 8em);
+  background: #ffffff;
+  padding: 1em 0em 0em 0em;
+  ul {
+    padding: 0em 0em 0em 2em;
+  }
+}
+p#about-image-container {
+  text-align: center;
+  padding: 0em;
+  margin: 0em;
+}
+span#about-image {
+  display: inline-block;
+  width: 10em;
+  height: 8em;
+  background-image: url(../images/sprites.png);
+  background-repeat: no-repeat;
+  background-position: 0em -45em;
+  background-size: 10em;
+  padding: 0em;
+  margin: 0em;
+}
+span#about-image.dead {
+  background-position: 0em -53em;
+}
+
+button {
+  display: none;
+  font-size: 0.8em;
+}
+button#about {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+}
+button#undo {
+  position: absolute;
+  left: 1em;
+  bottom: 1em;
+}
+
+p.name {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 3em;
+}
+
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  cursor: default;
+}
+td.cell {
+  padding: 0em;
+  border: 1px solid #000000;
+  width: 6em;
+  height: 6em;
+  div.cell {
+    display: table-cell;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    width: 6em;
+    height: 6em;
+    padding: 0em;
+    margin: auto;
+    span.hint {
+      font-size: xx-small;
+      position: absolute;
+      right: 2px;
+      top: 2px;
+    }
+  }
+  div.possible {
+    background: rgba(255, 153, 153, 0.5);
+  }
+}
+td.hand {
+  width: 2em;
+  div.hand {
+    width: 2em;
+    height: 2em;
+    overflow: visible;
+    span.piece {
+      font-size: 0.5em;
+    }
+  }
+}
+td.aux {
+  text-align: center;
+  width: 0.5em;
+}
+
+span.piece {
+  display: inline-block;
+  width: 4em;
+  height: 4em;
+  overflow: hidden;
+  cursor: pointer;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none; 
+  margin: auto;
+  background-image: url(../images/sprites.png);
+  background-repeat: no-repeat;
+  background-position: 0em 0em;
+  background-size: 8em;
+  border-style: solid;
+  border-width: 1px;
+  &.player {
+    background-color: #ffcccc;
+    border-color: #993333;
+  }
+  &.player:hover {
+    background-color: #ffdddd;
+    border-color: #ff9999;
+  }
+  &.master {
+    background-color: #ccccff;
+    border-color: #333399;
+  }
+  &.lion.player           { background-position:  0em -0em; }
+  &.lion.master           { background-position: -4em -0em; }
+  &.elephant.player       { background-position:  0em -4em; }
+  &.elephant.master       { background-position: -4em -4em; }
+  &.giraffe.player        { background-position:  0em -8em; }
+  &.giraffe.master        { background-position: -4em -8em; }
+  &.chick.player          { background-position:  0em -12em; }
+  &.chick.master          { background-position: -4em -12em; }
+  &.chick.player.promoted { background-position:  0em -16em; }
+  &.chick.master.promoted { background-position: -4em -16em; }
+}
+
+.player-text { color: #990000; }
+.master-text { color: #000099; }
+
+span#master {
+  position: absolute;
+  width: 4em;
+  height: 4em;
+  left: 0em;
+  top: 0em;
+  background-image: url(../images/sprites.png);
+  background-repeat: no-repeat;
+  background-position: 0em -20em;
+  background-size: 8em;
+  &.thinking {
+    background-position: -4em -20em;
+  }
+}
+span#player {
+  position: absolute;
+  width: 4em;
+  height: 4em;
+  right: 0em;
+  bottom: 0em;
+  background-image: url(../images/sprites.png);
+  background-repeat: no-repeat;
+  background-position: 0em 0em;
+  background-size: 8em;
+  &.level1 { background-position:  0em -24em; }
+  &.level2 { background-position: -4em -24em; }
+  &.level3 { background-position:  0em -28em; }
+  &.level4 { background-position: -4em -28em; }
+  &.level5 { background-position:  0em -32em; }
+  &.level6 { background-position: -4em -32em; }
+}

@@ -1,0 +1,16 @@
+.*.sw*
+
+precomp/*.txt
+precomp/*.lp
+precomp/*.lp.map
+precomp/*.sol
+precomp/target
+
+client/images/*.png
+client/images/*.jpg
+client/pub/*.js*
+client/out/*/*.js*
+client/node_modules/
+client/coverage/
+
+tmp/

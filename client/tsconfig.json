@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+	"strictNullChecks": true,
+        "sourceMap": true,
+	"outDir": "out"
+    },
+    "files": [
+        "src/board.ts",
+        "src/move.ts",
+        "src/ai.ts",
+        "src/app.ts",
+        "src/ui.ts",
+	"test/board.test.ts",
+	"test/move.test.ts",
+	"test/ai.test.ts"
+    ]
+}

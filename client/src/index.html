@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>どうぶつしょうぎ名人</title>
+  </head>
+  <body>
+    <div id="container">
+      <div id="board-box" role="main">
+        <p class="name master-text">
+          <span id="master"></span>
+          △どうぶつしょうぎ名人
+        </p>
+        <table>
+          <tr>
+            <td colspan="2" class="aux"></td>
+            <td class="aux">A</td>
+            <td class="aux">B</td>
+            <td class="aux">C</td>
+            <td rowspan="9" class="aux"></td>
+            <td class="aux"></td>
+          </tr>
+          <tr>
+            <td class="hand"><div id="master0" class="hand"></div></td>
+            <td rowspan="2" class="aux">1</td>
+            <td rowspan="2" class="cell">
+              <div data-x="2" data-y="3" class="cell">
+                <span class="hint"></span>
+                <span data-p="3" class="piece master giraffe"></span>
+              </div>
+            </td>
+            <td rowspan="2" class="cell">
+              <div data-x="1" data-y="3" class="cell">
+                <span class="hint"></span>
+                <span data-p="1" class="piece master lion"></span>
+              </div>
+            </td>
+            <td rowspan="2" class="cell">
+              <div data-x="0" data-y="3" class="cell">
+                <span class="hint"></span>
+                <span data-p="2" class="piece master elephant"></span>
+              </div>
+            </td>
+            <td class="hand"><div id="player7" class="hand"></div></td>
+          </tr>
+          <tr>
+            <td class="hand"><div id="master1" class="hand"></div></td>
+            <td class="hand"><div id="player6" class="hand"></div></td>
+          </tr>
+          <tr>
+            <td class="hand"><div id="master2" class="hand"></div></td>
+            <td rowspan="2" class="aux">2</td>
+            <td rowspan="2" class="cell">
+              <div data-x="2" data-y="2" class="cell">
+                <span class="hint"></span>
+              </div>
+            </td>
+            <td rowspan="2" class="cell">
+              <div data-x="1" data-y="2" class="cell">
+                <span class="hint"></span>
+                <span data-p="4" class="piece master chick"></span>
+              </div>
+            </td>
+            <td rowspan="2" class="cell">
+              <div data-x="0" data-y="2" class="cell">
+                <span class="hint"></span>
+              </div>
+            </td>
+            <td class="hand"><div id="player5" class="hand"></div></td>
+          </tr>
+          <tr>
+            <td class="hand"><div id="master3" class="hand"></div></td>
+            <td class="hand"><div id="player4" class="hand"></div></td>
+          </tr>
+          <tr>
+            <td class="hand"><div id="master4" class="hand"></div></td>
+            <td rowspan="2" class="aux">3</td>
+            <td rowspan="2" class="cell">
+              <div data-x="2" data-y="1" class="cell">
+                <span class="hint"></span>
+              </div>
+            </td>
+            <td rowspan="2" class="cell">
+              <div data-x="1" data-y="1" class="cell">
+                <span class="hint"></span>
+                <span data-p="4" class="piece player chick"></span>
+              </div>
+            </td>
+            <td rowspan="2" class="cell">
+              <div data-x="0" data-y="1" class="cell">
+                <span class="hint"></span>
+              </div>
+            </td>
+            <td class="hand"><div id="player3" class="hand"></div></td>
+          </tr>
+          <tr>
+            <td class="hand"><div id="master5" class="hand"></div></td>
+            <td class="hand"><div id="player2" class="hand"></div></td>
+          </tr>
+          <tr>
+            <td class="hand"><div id="master6" class="hand"></div></td>
+            <td rowspan="2" class="aux">4</td>
+            <td rowspan="2" class="cell">
+              <div data-x="2" data-y="0" class="cell">
+                <span class="hint"></span>
+                <span data-p="2" class="piece player elephant"></span>
+              </div>
+            </td>
+            <td rowspan="2" class="cell">
+              <div data-x="1" data-y="0" class="cell">
+                <span class="hint"></span>
+                <span data-p="1" class="piece player lion"></span>
+              </div>
+            </td>
+            <td rowspan="2" class="cell">
+              <div data-x="0" data-y="0" class="cell">
+                <span class="hint"></span>
+                <span data-p="3" class="piece player giraffe"></span>
+              </div>
+            </td>
+            <td class="hand"><div id="player1" class="hand"></div></td>
+          </tr>
+          <tr>
+            <td class="hand"><div id="master7" class="hand"></div></td>
+            <td class="hand"><div id="player0" class="hand"></div></td>
+          </tr>
+        </table>
+        <p class="name player-text">
+          <span id="player" class="level1"></span>
+          ▲あなた（<span id="msg">あと78手</span>）
+        </p>
+        <button id="undo">まった</button>
+        <button id="about">せつめい</button>
+      </div>
+      <div id="record-box">
+        <p>棋譜：</p>
+        <ol id="record"></ol>
+        <p id="dead-msg">まで<span id="last">XX</span>手にて<br />どうぶつしょうぎ名人 の勝ち</p>
+      </div>
+    </div>
+    <div id="about-overlay">
+      <div id="about-dialog">
+        <ul>
+          <li>どうぶつしょうぎのルールは<a href="https://ja.wikipedia.org/wiki/%E3%81%A9%E3%81%86%E3%81%B6%E3%81%A4%E3%81%97%E3%82%87%E3%81%86%E3%81%8E">Wikipedia</a>を見てください。</li>
+          <li>どうぶつしょうぎ名人には勝てません。</li>
+          <li>ソースコードは github にあります。</li>
+          <li>画像は「<a href="http://www.irasutoya.com/">いらすとや</a>」のものです。</li>
+        </ul>
+        <p id="about-image-container">
+          <span id="about-image"></span>
+        </p>
+      </div>
+    </div>
+    <script type="text/javascript" src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+[package]
+name = "precomp"
+version = "0.1.0"
+authors = ["Yusuke Endoh <mame@ruby-lang.org>"]
+
+[dependencies]
+
+[[bin]]
+name = "1-enum"
+path = "src/1-enum.rs"
+
+[[bin]]
+name = "2-analyze"
+path = "src/2-analyze.rs"
+
+[[bin]]
+name = "3-extract"
+path = "src/3-extract.rs"
+
+[[bin]]
+name = "9-test"
+path = "src/9-test.rs"
+
+[profile.release]
+opt-level = 3
+debug = true
+lto = true
