@@ -114,6 +114,7 @@ export class UI {
     // Event handlers
 
     dragstart(piece: JQuery) {
+        if (piece.hasClass("master")) return;
         if (this.ui_state.board.dead_p()) return;
         // show droppable cells
         this.query_move(piece, {}, (move) => {
