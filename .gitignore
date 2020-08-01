@@ -12,5 +12,6 @@ client/pub/*.js*
 client/out/*/*.js*
 client/node_modules/
 client/coverage/
+client/.nyc_output/
 
 tmp/

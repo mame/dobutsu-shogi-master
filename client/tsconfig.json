@@ -1,12 +1,14 @@
 {
     "compilerOptions": {
+        "baseUrl": "./src",
         "module": "commonjs",
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
-	"strictNullChecks": true,
+        "strictNullChecks": true,
         "sourceMap": true,
-	"outDir": "out"
+        "outDir": "out",
+        "lib": ["dom", "es6"]
     },
     "files": [
         "src/board.ts",
@@ -14,8 +16,8 @@
         "src/ai.ts",
         "src/app.ts",
         "src/ui.ts",
-	"test/board.test.ts",
-	"test/move.test.ts",
-	"test/ai.test.ts"
+        "test/board.test.ts",
+        "test/move.test.ts",
+        "test/ai.test.ts"
     ]
 }

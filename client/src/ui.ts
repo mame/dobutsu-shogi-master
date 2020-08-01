@@ -6,6 +6,12 @@ import "jquery-ui/ui/widgets/droppable";
 import "jquery-ui/themes/base/core.css";
 import "jquery-ui/themes/base/button.css";
 import "jquery-ui/themes/base/draggable.css";
+
+// Hack to enable touch-punch for pointer device (e.g., Surface)
+if ('onpointerenter' in window) {
+  document["ontouchend"] = ((ev: TouchEvent) => void 0);
+}
+
 import "jquery-ui-touch-punch/jquery.ui.touch-punch";
 
 import {Board, Piece, Result, isResult} from "./board";
@@ -30,7 +36,7 @@ export class UI {
         this.locked = false;
 
         $("span.piece").draggable({
-            start: (event, ui) => { this.dragstart($(event.target)); },
+            start: (event, ui) => { this.dragstart($(event.target) as JQuery<HTMLElement>); },
             stop: (event, ui) => { this.dragstop(); },
             revert: "invalid",
             revertDuration: 300,
@@ -38,7 +44,7 @@ export class UI {
             scroll: false
         });
         $("div.cell").droppable({
-            drop: (event, ui) => { this.drop(ui.draggable, $(event.target)); },
+            drop: (event, ui) => { this.drop(ui.draggable, $(event.target) as JQuery<HTMLElement>); },
         });
 
         $("button").button();
@@ -230,9 +236,9 @@ export class UI {
     // move a span element of a piece with animation
     animate_piece(piece: JQuery, old_place: JQuery, new_place: JQuery, fast: boolean) {
         new_place.append(piece);
-        let { left: old_off_x  , top: old_off_y   } = old_place.offset();
-        let { left: new_off_x  , top: new_off_y   } = new_place.offset();
-        let { left: piece_off_x, top: piece_off_y } = piece.offset();
+        let { left: old_off_x  , top: old_off_y   } = old_place.offset()!;
+        let { left: new_off_x  , top: new_off_y   } = new_place.offset()!;
+        let { left: piece_off_x, top: piece_off_y } = piece.offset()!;
         let size = "" + (new_place.hasClass("hand") ? 0.5 : 1.0) + "em";
         piece.offset({
             left: piece_off_x - new_off_x + old_off_x,

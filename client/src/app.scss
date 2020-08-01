@@ -80,9 +80,9 @@ div#about-overlay {
 div#about-dialog {
   position: fixed;
   width: 20em;
-  height: 14em;
-  left: calc(50vw - 10em);
-  top: calc(50vh - 8em);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   background: #ffffff;
   padding: 1em 0em 0em 0em;
   ul {

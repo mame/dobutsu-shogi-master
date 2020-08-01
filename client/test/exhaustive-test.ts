@@ -11,7 +11,7 @@ if (isResult(stack)) throw new Error("broken");
 
 let visited: { [key: string]: boolean } = {};
 
-let expected = fs.readFileSync("precomp/9.txt", "utf-8").split("\n");
+let expected = fs.readFileSync("../precomp/9.txt", "utf-8").split("\n");
 expected.pop();
 
 let i = 0;
