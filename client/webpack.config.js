@@ -1,5 +1,6 @@
-var webpack = require("webpack");
-var path = require("path");
+const webpack = require("webpack");
+const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: "./src/app.ts",
@@ -13,14 +14,14 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.scss$/, use: ["style-loader", "css-loader", "sass-loader"] },
-      { test: /\.css$/, use: ["style-loader", "css-loader"] },
-      { test: /\.(png|jpg|html)$/, use: [{ loader: "file-loader", options: { name: '[name].[ext]' } }] },
+      { test: /\.s?css$/, use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"] },
+      { test: /\.(png|jpg|html)$/, use: [{ loader: "file-loader", options: { name: "[name].[ext]" } }] },
       { test: /\.txt$/, use: "raw-loader" },
       { test: /\.tsx?$/, use: "ts-loader" }
     ]
   },
   plugins: [
+    new MiniCssExtractPlugin(),
     new webpack.ProvidePlugin({
       "$": "jquery",
       "jQuery": "jquery",
