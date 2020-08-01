@@ -1,4 +1,5 @@
 import "./index.html";
+import "./favicon.ico";
 import "./app.scss";
 import {AI} from "./ai";
 import {UI} from "./ui";

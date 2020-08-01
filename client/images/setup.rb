@@ -54,6 +54,7 @@ pieces = [
 pieces.each_with_index do |f, i|
   dir = [0b11111111, 0b10101010, 0b01010101, 0b00000001, 0b11010111][i]
   arrow(f, arrow, dir)
+  system("cp", f, "n-" + f)
   system("convert", "+append", f, rotate(f), f)
 end
 
