@@ -229,7 +229,8 @@ class DAG
     # assign variable names in order of frequency
     # (more frequent variable should have shorter name)
     gen = NameGenerator.new
-    count.sort_by {|n, c| -c }.each do |n, _|
+    i = 0
+    count.sort_by {|n, c| [-c, i += 1] }.each do |n, _|
       n.var = gen.new_name
     end
 
