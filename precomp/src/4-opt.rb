@@ -342,7 +342,7 @@ class DAG
 
   class NameGenerator
     ALPHA = [*"A".."Z", *"a".."z","_"] - ["E", "e"] # Note that "e01" is float
-    ALNUM = (ALPHA + [*"0".."9", "E", "e", *%w(! " # $ % & ( ) , . ; ? @ _ { } ~)]).sort
+    ALNUM = (ALPHA + [*"0".."9", "E", "e", *%w(! " # $ % & ( ) , . ; ? @ { } ~)]).sort
 
     def initialize
       @n = 0

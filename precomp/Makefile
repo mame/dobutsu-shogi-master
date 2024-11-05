@@ -36,7 +36,7 @@ $(OUT)/9-test: src/9-test.rs $(LIB) build
 4.txt: src/4-opt.rb 3.txt 4.sol
 	time ruby $< 3.txt 4.sol 4.lp.map > $@
 
-4.sol: neos.scip.10000sec.sol.lzma 4.lp
+4.sol: scip.sol.lzma 4.lp
 	md5sum -c 4.lp.md5sum
 	unlzma -c $< > $@
 
