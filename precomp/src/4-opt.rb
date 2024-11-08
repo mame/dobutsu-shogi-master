@@ -25,7 +25,7 @@
 #
 #   (1) trivial propagation: if there are constraints 'p = 1' and 'c - p >= 0',
 #       remove them and add a new constraint 'c = 1'.  (We call p is "pinned".)
-#   (2) unused consitraints: remove a node that has no weight and children.
+#   (2) unused constraints: remove a node that has no weight and children.
 #   (3) trivial merge: if there are `c1 - p >= 0' and `c2 - c1 >= 0`, remove
 #       them and add a new constraint 'c2 - p >= 0'.
 
@@ -33,7 +33,7 @@
 #   type: :any or :all
 #   parents: previous nodes
 #   children: next nodes
-#   weight: coefficient in objective functoin
+#   weight: coefficient in objective function
 #   board: the corresponding board (only for "any" node)
 Node = Struct.new(:type, :parents, :children, :weight, :board)
 
@@ -65,7 +65,7 @@ class Node
     parents.dup.each do |p|
       if p.type == :any
         p.delete_children
-        # We mean "no constraints" by settting out-degree to 0.
+        # We mean "no constraints" by setting out-degree to 0.
         # It's slightly awkward that "any" node has no children, though...
       else
         p.delete_child(self)
@@ -79,7 +79,7 @@ class Node
     end
   end
 
-  # marge this node and its child
+  # merge this node and its child
   def merge
     # we merge only if out-degree(self) = 1 and out-degree(child) = 1
     while children.size == 1 && children[0].parents.size == 1
@@ -267,7 +267,7 @@ class DAG
     @start_nodes.reject! {|n| n.children.empty? }
   end
 
-  # (2) unused consitraints: remove a node that has no weight and children.
+  # (2) unused constraints: remove a node that has no weight and children.
   def remove_unused_leaves
     each_node do |n|
       n.pin([]) if n.weight == 0 && n.children.empty?
