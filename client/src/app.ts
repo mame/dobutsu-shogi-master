@@ -1,9 +1,7 @@
-import "./index.html";
-import "./favicon.ico";
-import "./app.scss";
 import {AI} from "./ai";
+import "./bootstrap";
 import {UI} from "./ui";
 //@ts-ignore
-import ai_txt from "ai.txt";
+import ai_txt from "../../precomp/ai.txt?raw";
 
 new UI(new AI(ai_txt));
