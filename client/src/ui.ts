@@ -1,8 +1,4 @@
-import * as $ from "jquery";
-import "jquery-ui/ui/core";
-import "jquery-ui/ui/widgets/button";
-import "jquery-ui/ui/widgets/draggable";
-import "jquery-ui/ui/widgets/droppable";
+import "jquery-ui/dist/jquery-ui";
 import "jquery-ui/themes/base/core.css";
 import "jquery-ui/themes/base/button.css";
 import "jquery-ui/themes/base/draggable.css";

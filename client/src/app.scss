@@ -185,6 +185,7 @@ span.piece {
   height: 4em;
   overflow: hidden;
   cursor: pointer;
+  user-select: none;
   -ms-user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none; 
