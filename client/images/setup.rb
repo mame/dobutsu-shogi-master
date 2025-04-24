@@ -90,5 +90,8 @@ system("magick", "-append", "sprites.png", *abouts, "sprites.png")
 
 opt("sprites.png")
 
+system("cp", "piece0.png", "ogp.png")
+opt("ogp.png")
+
 bg = download("http://1.bp.blogspot.com/-aC2jXDBJcuY/VpjBp16ShbI/AAAAAAAA25w/pL6seXQvsM0/s1600/bg_natural_sougen.jpg")
 File.binwrite("bg.jpg", File.binread(bg))

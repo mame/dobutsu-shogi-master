@@ -6,7 +6,7 @@
     "pretest": "tsc",
     "test": "nyc --reporter=html --reporter=text mocha out/test",
     "exhaustive-test": "ts-node test/exhaustive-test.ts",
-    "build": "vite build",
+    "build": "vite build --emptyOutDir",
     "lint": "tslint src/*.ts test/*.ts",
     "vim": "vim -p src/*.ts"
   },
