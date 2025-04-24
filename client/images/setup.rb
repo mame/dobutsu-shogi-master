@@ -12,7 +12,7 @@ end
 def sq(i, o, size, extent = size)
   size = "%dx%d" % [size, size] unless size.is_a?(String)
   extent = "%dx%d" % [extent, extent] unless extent.is_a?(String)
-  system("convert", "-gravity", "center", i, "-resize", size, "-background", "transparent", "-extent", extent, o)
+  system("magick", "-gravity", "center", i, "-resize", size, "-background", "transparent", "-extent", extent, o)
   o
 end
 
@@ -20,15 +20,15 @@ def arrow(f, arrow, n)
   8.times do |m|
     next if n[m] == 0
     dir = %w(north northwest west southwest south southeast east northeast)[m]
-    system("convert", arrow, "-background", "rgba(0,0,0,0)", "-rotate", (m * -45).to_s, "tmp.png")
-    system("convert", f, "tmp.png", "-gravity", dir, "-composite", f)
+    system("magick", arrow, "-background", "rgba(0,0,0,0)", "-rotate", (m * -45).to_s, "tmp.png")
+    system("magick", f, "tmp.png", "-gravity", dir, "-composite", f)
   end
   f
 end
 
 def rotate(f)
   rf = "r-" + f
-  system("convert", f, "-rotate", "180", rf)
+  system("magick", f, "-rotate", "180", rf)
   rf
 end
 
@@ -55,13 +55,13 @@ pieces.each_with_index do |f, i|
   dir = [0b11111111, 0b10101010, 0b01010101, 0b00000001, 0b11010111][i]
   arrow(f, arrow, dir)
   system("cp", f, "n-" + f)
-  system("convert", "+append", f, rotate(f), f)
+  system("magick", "+append", f, rotate(f), f)
 end
 
 # 人工知能
 ai = sq(download("http://4.bp.blogspot.com/-Anllqq6pDXw/VRUSesbvyAI/AAAAAAAAsrc/CIHz6vLsuTU/s800/computer_jinkou_chinou.png"), "ai.png", SIZE)
-system("convert", "ai.png", "-modulate", "130", "ai2.png")
-system("convert", "+append", ai, "ai2.png", ai)
+system("magick", "ai.png", "-modulate", "130", "ai2.png")
+system("magick", "+append", ai, "ai2.png", ai)
 
 faces = [
   # 普通 (78-70)
@@ -77,16 +77,16 @@ faces = [
   # 泣く (0)
   download("http://1.bp.blogspot.com/-JvWLzDT99Bo/VZ-O2WKmgII/AAAAAAAAu90/uFNjFQlG7vw/s300/boy04_cry.png"),
 ].map.with_index {|f, i| sq(f, "face%d.png" % i, SIZE) }.each_slice(2).map do |f1, f2|
-  system("convert", "+append", f1, f2, f1)
+  system("magick", "+append", f1, f2, f1)
   f1
 end
-system("convert", "-append", *(pieces + [ai] + faces), "sprites.png")
+system("magick", "-append", *(pieces + [ai] + faces), "sprites.png")
 
 abouts = [
   download("http://2.bp.blogspot.com/--RIb-pd-Kdg/WFtH6Um3jmI/AAAAAAABAmQ/wRiSA1kKc8MBYEaEonmSbwB2UZAaiwhwACLcB/s800/ai_kenka.png"),
   download("http://2.bp.blogspot.com/-Vo_Zg1TcAz8/V5NDnu2l8WI/AAAAAAAA8dQ/bVr8Ybi7k9oSX8MH0Af9Kvv5MzW-ccwJQCLcB/s800/ai_pet_family.png"),
 ].map.with_index {|f, i| sq(f, "about%d.png" % i, "%dx%d" % [SIZE * 2, SIZE * 1.6]) }
-system("convert", "-append", "sprites.png", *abouts, "sprites.png")
+system("magick", "-append", "sprites.png", *abouts, "sprites.png")
 
 opt("sprites.png")
 
