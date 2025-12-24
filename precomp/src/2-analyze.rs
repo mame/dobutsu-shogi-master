@@ -126,7 +126,7 @@ fn main() {
     for b in &s.prev_boards { out!(out, "{:015x} 0\n", b.0); }
 
     // retrospective analysis
-    while s.prev_boards.len() > 0 {
+    while s.prev_boards.len() > 0 || depth == 0 {
         board_counts[depth % 2] += s.prev_boards.len();
 
         log!("analyzing... (depth-{} boards: {}, unfixed boards: {})",
