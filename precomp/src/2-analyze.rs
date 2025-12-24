@@ -104,9 +104,20 @@ fn enumerate_next_boards(s: &mut State, depth: i32) {
     }
     else {
         // approach 2
+        let mut prev_set = BoardSet::new();
+        for &pb in prev_boards {
+            prev_set.insert(pb);
+        }
         unfixed.each(|b| {
-            // candidate found
-            check(fixed, b, depth, &mut next_boards);
+            if let Result::Unknown(bs) = b.next() {
+                for nb in bs {
+                    if prev_set.contains(nb) {
+                        // candidate found
+                        check(fixed, b, depth, &mut next_boards);
+                        return;
+                    }
+                }
+            }
         });
     }
 }
