@@ -114,7 +114,7 @@ export class Normal {
                 }
                 else if (y === move.y) {
                     // the vertical direction is the same (or no vertical move)
-                    s += x < nx ? "左" : "右";
+                    s += x < nx ? "右" : "左";
                 }
                 else if (y < ny) {
                     s += "上";

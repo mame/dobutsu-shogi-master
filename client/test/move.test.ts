@@ -11,21 +11,21 @@ describe("Move", () => {
 
     it("should handle '右' correctly", () => {
         let b1 = new Board(0, 0).put(0, 0, Piece.Hen).put(2, 0, Piece.Hen);
-        let b2 = new Board(0, 0).put(0, 0, Piece.Hen).put(1, 0, Piece.Hen);
+        let b2 = new Board(0, 0).put(1, 0, Piece.Hen).put(2, 0, Piece.Hen);
         assert.equal(Move.detect_move(b1, b2).toString(), "▲B4にわとり右");
 
         b1 = new Board(0, 0).put(0, 0, Piece.Elephant).put(2, 0, Piece.Elephant);
-        b2 = new Board(0, 0).put(0, 0, Piece.Elephant).put(1, 1, Piece.Elephant);
+        b2 = new Board(0, 0).put(1, 1, Piece.Elephant).put(2, 0, Piece.Elephant);
         assert.equal(Move.detect_move(b1, b2).toString(), "▲B3ぞう右");
     });
 
     it("should handle '左' correctly", () => {
         let b1 = new Board(0, 0).put(0, 0, Piece.Hen).put(2, 0, Piece.Hen);
-        let b2 = new Board(0, 0).put(1, 0, Piece.Hen).put(2, 0, Piece.Hen);
+        let b2 = new Board(0, 0).put(0, 0, Piece.Hen).put(1, 0, Piece.Hen);
         assert.equal(Move.detect_move(b1, b2).toString(), "▲B4にわとり左");
 
         b1 = new Board(0, 0).put(0, 0, Piece.Elephant).put(2, 0, Piece.Elephant);
-        b2 = new Board(0, 0).put(1, 1, Piece.Elephant).put(2, 0, Piece.Elephant);
+        b2 = new Board(0, 0).put(0, 0, Piece.Elephant).put(1, 1, Piece.Elephant);
         assert.equal(Move.detect_move(b1, b2).toString(), "▲B3ぞう左");
     });
 
@@ -68,6 +68,20 @@ describe("Move", () => {
         let b1 = new Board(0, 0).put(0, 0, h).put(0, 2, h);
         let b2 = new Board(0, 0).put(0, 0, h).put(0, 1, h);
         assert.equal(Move.detect_move(b1, b2).toString(), "△C3にわとり上");
+    });
+
+    it("should handle '右' for opponent correctly", () => {
+        let h = Piece.opponent[Piece.Hen];
+        let b1 = new Board(0, 0).put(0, 3, h).put(2, 3, h);
+        let b2 = new Board(0, 0).put(0, 3, h).put(1, 2, h);
+        assert.equal(Move.detect_move(b1, b2).toString(), "△B2にわとり右");
+    });
+
+    it("should handle '左' for opponent correctly", () => {
+        let h = Piece.opponent[Piece.Hen];
+        let b1 = new Board(0, 0).put(0, 3, h).put(2, 3, h);
+        let b2 = new Board(0, 0).put(1, 2, h).put(2, 3, h);
+        assert.equal(Move.detect_move(b1, b2).toString(), "△B2にわとり左");
     });
 
     it("should enumerate all possible moves correctly", () => {
